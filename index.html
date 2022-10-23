@@ -6,11 +6,44 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22 0 0 100 100 %22><text y=%22.9em%22 font-size=%22 80 %22>🎨</text></svg>" />
     <link rel="stylesheet" href="css/global-reset.css" />
     <link rel="stylesheet" href="css/app.css" />
+    <script type="text/javascript" src="libs/dat.gui.min.js"></script>
   </head>
   <body> 
-    <video width="1280" height="720" loop autoplay muted>
+    <div>
+      <video id="vid" width="1024" height="768" loop autoplay muted>
         <source src="test-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+   </div>   
+      
+      <script>
+        const video = document.getElementById("vid");
+        const params = { bottom: 0, skew: 0 , rotateX: 0,  perspective: 0,  maxHeight:700 };
+        const gui = new dat.GUI();
+        gui.useLocalStorage = true;
+        gui.remember(params);
+        
+        gui.add(params, "bottom").min(-200).max(500).step(1).onChange(updateProps);
+        gui.add(params, "skew").min(-20).max(20).step(1).onChange(updateProps);
+        gui.add(params, "rotateX").min(-40).max(40).step(0.001).onChange(updateProps);
+        //gui.add(params, "rotateY").min(-40).max(40).step(1).onChange(updateProps);
+        //gui.add(params, "rotateZ").min(-40).max(40).step(1).onChange(updateProps);
+        gui.add(params, "perspective").min(1).max(30).step(0.001).onChange(updateProps);
+        gui.add(params, "maxHeight").min(100).max(1000).step(1).onChange(updateProps);
+     
+        
+        /*
+          transform: skew(15deg);
+          transform: perspective(9cm) rotateX(-15deg) rotateY(30deg);
+        */
+        updateProps();
+        
+        function updateProps(){
+          vid.style.bottom = params.bottom + "px";
+          vid.style.maxHeight = params.maxHeight + "px";
+          vid.style.transform = `skew(${params.skew}deg) perspective(${params.perspective}cm) rotateX(${params.rotateX}deg)`;
+        }
+        
+      </script>
   </body>
 </html>

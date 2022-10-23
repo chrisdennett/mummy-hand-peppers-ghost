@@ -6,7 +6,10 @@ body {
 }
 
 video {
-  max-height: 500px;
   position: fixed;
-  bottom: 0;
+  /*max-height: 500px;*/
+  /*transform: skew(15deg);
+  transform: perspective(9cm) rotateX(-15deg) rotateY(30deg);
+  transform: rotateX(-80deg);
+  bottom: 10px;*/
 }
