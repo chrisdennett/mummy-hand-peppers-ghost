@@ -13,3 +13,7 @@ video {
   transform: rotateX(-80deg);
   bottom: 10px;*/
 }
+
+.close-button {
+  color: rgb(62, 63, 63);
+}
