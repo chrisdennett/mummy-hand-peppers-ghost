@@ -6,12 +6,9 @@ body {
 }
 
 video {
+  scale: 1 -1;
   position: fixed;
-  /*max-height: 500px;*/
-  /*transform: skew(15deg);
-  transform: perspective(9cm) rotateX(-15deg) rotateY(30deg);
-  transform: rotateX(-80deg);
-  bottom: 10px;*/
+  object-fit: cover;
 }
 
 .close-button {

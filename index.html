@@ -13,7 +13,7 @@
 
 <body>
   <div>
-    <video id="vid" width="1280" height="720" loop autoplay>
+    <video id="vid" width="720" height="1280" loop autoplay muted>
       <source src="mummys-hand-720x1280.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -33,17 +33,14 @@
       }
     })
 
-    const params = { left: 0, bottom: 0, skew: 0, rotateX: 0, perspective: 0, maxHeight: 700 };
+    const params = { left: 0, top: 0, height: 700 };
     const gui = new dat.GUI();
     gui.useLocalStorage = true;
     gui.remember(params);
 
     gui.add(params, "left").min(-900).max(900).step(1).onChange(updateProps);
-    gui.add(params, "bottom").min(-900).max(900).step(1).onChange(updateProps);
-    gui.add(params, "skew").min(-20).max(20).step(1).onChange(updateProps);
-    gui.add(params, "rotateX").min(-40).max(40).step(0.001).onChange(updateProps);
-    gui.add(params, "perspective").min(1).max(30).step(0.001).onChange(updateProps);
-    gui.add(params, "maxHeight").min(100).max(1000).step(1).onChange(updateProps);
+    gui.add(params, "top").min(-900).max(900).step(1).onChange(updateProps);
+    gui.add(params, "height").min(100).max(2000).step(1).onChange(updateProps);
 
     gui.closed = true;
 
@@ -56,9 +53,9 @@
 
     function updateProps() {
       vid.style.left = params.left + "px";
-      vid.style.bottom = params.bottom + "px";
-      vid.style.maxHeight = params.maxHeight + "px";
-      vid.style.transform = `skew(${params.skew}deg) perspective(${params.perspective}cm) rotateX(${params.rotateX}deg)`;
+      vid.style.top = params.top + "px";
+      vid.style.height = params.height + "px";
+      // vid.style.transform = `skew(${params.skew}deg) perspective(${params.perspective}cm) rotateX(${params.rotateX}deg)`;
     }
 
   </script>
