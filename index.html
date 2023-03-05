@@ -13,13 +13,42 @@
 
 <body>
   <div>
-    <video id="vid" width="720" height="1280" loop autoplay muted>
-      <source src="mummys-hand-720x1280.mp4" type="video/mp4">
+    <video id="vid" width="720" height="1280" loop autoplay>
+      <source src="mummys-hand-with-audio-2.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
 
   <script>
+    window.addEventListener("keyup", (e) => {
+
+      const inc = e.shiftKey ? 5 : 1;
+
+      if (e.key === "[" || e.key === "{") {
+        params.height -= inc;
+      }
+      if (e.key === "]" || e.key === "}") {
+        params.height += inc;
+      }
+
+      if (e.key === "ArrowUp") {
+        params.top -= inc;
+      }
+      if (e.key === "ArrowDown") {
+        params.top += inc;
+      }
+
+      if (e.key === "ArrowLeft") {
+        params.left -= inc;
+      }
+      if (e.key === "ArrowRight") {
+        params.left += inc;
+      }
+
+      updateProps();
+    });
+
+
     const video = document.getElementById("vid");
     let isPlaying = true;
     video.addEventListener('click', () => {
@@ -43,7 +72,6 @@
     gui.add(params, "height").min(100).max(2000).step(1).onChange(updateProps);
 
     gui.closed = true;
-
 
     /*
       transform: skew(15deg);
